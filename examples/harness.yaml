@@ -1,0 +1,20 @@
+# Demo config: shell agent + four gates + file-based approval.
+agent:
+  type: shell
+  command: "python ../agents/fix_greeting_agent.py"
+spec:
+  type: template
+  constraints:
+    - Only touch src/ and tests/
+gates:
+  - {type: size, max_files: 5, max_lines: 50}
+  - {type: scope, allow: ["src/*", "tests/*"]}
+  - {type: secrets}
+  - {type: command, name: tests, run: "python -m pytest -q -p no:cacheprovider tests"}
+approval:
+  type: file
+  directory: .harness/approvals
+budget:
+  max_attempts: 3
+  max_tokens: 10000
+  max_seconds: 120

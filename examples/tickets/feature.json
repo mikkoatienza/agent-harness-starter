@@ -1,0 +1,1 @@
+{"id": "DEMO-2", "title": "Add farewell()", "body": "Mirror greet().", "acceptance": ["farewell('Ada') returns 'Goodbye, Ada!'", "Has a test"]}
